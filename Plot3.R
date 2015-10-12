@@ -8,9 +8,8 @@ if(!file.exists("household_power_consumption.txt")){
 if(!exists("data01")){
         data01 <- read.table("household_power_consumption.txt",header=TRUE, sep=";", na.strings = "?")
 }
-##3rd, converts to column 1 and 2 to specific Date and Time formats##
+##3rd, converts to column 1 to specific Date formats##
 data01$Date <- as.Date(data01$Date,"%d/%m/%Y")
-data01$Time <- strptime(data01$Time,format="%Y-%m-%d %H:%M:%S")
 
 ##4th, prompts for the Initial and Final Date of the time frame##
 ini_d <- readline(prompt = "Enter the initial date for the chart (in format yyyy-mm-dd ) : ")
