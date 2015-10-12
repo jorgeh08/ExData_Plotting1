@@ -8,9 +8,8 @@ if(!file.exists("household_power_consumption.txt")){
 if(!exists("data01")){
         data01 <- read.table("household_power_consumption.txt",header=TRUE, sep=";", na.strings = "?")
 }
-##3rd, converts to column 1 and 2 to specific Date and Time formats##
+##3rd, converts to column 1 to specific Date formats##
 data01$Date <- as.Date(data01$Date,"%d/%m/%Y")
-data01$Time <- strptime(data01$Time,format="%Y-%m-%d %H:%M:%S")
 
 ##4th, prompts for the Initial and Final Date of the time frame##
 ini_d <- readline(prompt = "Enter the initial date for the chart (in format yyyy-mm-dd ) : ")
@@ -22,9 +21,6 @@ data02$time_stamp <- paste(data02$Date, data02$Time, sep=" ")
 data02$time_stamp <- strptime(data02$time_stamp, format = "%Y-%m-%d %H:%M:%S")
 
 ##6th, generates the plot##
-png("plot3.png", width = 480, height = 480)
-plot(data02$time_stamp, data02$Sub_metering_1, type ="l", xlab = "", ylab="Energy sub Metering")
-lines(data02$time_stamp, data02$Sub_metering_2, type="l", col="red")
-lines(data02$time_stamp, data02$Sub_metering_3, type="l", col="blue")
-legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=1, lwd=2, col=c("black","red","blue"))
+png("plot2.png", width = 480, height = 480)
+plot(data02$time_stamp, data02$Global_active_power, type = "l", xlab="", ylab="Global Active Power (kilowatts)")
 dev.off()
